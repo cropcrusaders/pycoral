@@ -1,16 +1,60 @@
-# PyCoral API
+# PyCoral API - Updated for Python 3.13
 
 This repository contains an easy-to-use Python API that helps you run inferences
 and perform on-device transfer learning with TensorFlow Lite models on
 [Coral devices](https://coral.ai/products/).
 
-To install the prebuilt PyCoral library, see the instructions at
-[coral.ai/software/](https://coral.ai/software/#pycoral-api).
+**🚀 This version has been updated to support Python 3.13 and modern dependencies.**
 
-**Note:** If you're on a Debian system, be sure to install this library from
-apt-get and not from pip. Using `pip install` is not guaranteed compatible with
-the other Coral libraries that you must install from apt-get. For details, see
-[coral.ai/software/](https://coral.ai/software/#debian-packages).
+## Quick Installation
+
+### Install from GitHub (Recommended)
+
+```bash
+pip install git+https://github.com/cropcrusaders/pycoral.git
+```
+
+### Local Development Install
+
+```bash
+git clone https://github.com/cropcrusaders/pycoral.git
+cd pycoral
+python install.py
+```
+
+### Alternative: Install from Built Wheel
+
+```bash
+# Clone and build
+git clone https://github.com/cropcrusaders/pycoral.git
+cd pycoral
+python -m build --wheel
+pip install dist/pycoral-2.1.0-py3-none-any.whl
+```
+
+### Requirements
+
+- Python 3.9, 3.10, 3.11, 3.12, or 3.13
+- NumPy >= 1.21.0
+- Pillow >= 8.0.0
+
+## What's New in This Version
+
+- ✅ **Python 3.13 Support** - Fully compatible with the latest Python
+- ✅ **Modern Dependencies** - Updated NumPy, Pillow, and build system
+- ✅ **Easy Installation** - Simple pip install from GitHub
+- ✅ **Improved Build System** - Modern packaging with pyproject.toml
+
+## Legacy Installation Notes
+
+The original instructions mentioned installing from apt-get on Debian systems.
+This updated version can be installed via pip, but for official Edge TPU drivers,
+you may still need to follow [coral.ai/software/](https://coral.ai/software/#pycoral-api)
+for the Edge TPU runtime.
+
+**Note:** If you need the exact original Google version, use the official
+[coral.ai/software/](https://coral.ai/software/#pycoral-api) instructions.
+This repository provides an updated, Python 3.13-compatible version.
 
 ## Documentation and examples
 
