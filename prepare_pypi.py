@@ -8,8 +8,7 @@ import os
 from pathlib import Path
 import json
 
-def run_command(cmd, des    print("🔗 For GitHub installs, users can use:")
-    print("   pip install git+https://github.com/cropcrusaders/pycoral.git")iption):
+def run_command(cmd, description):
     """Run a command and return success status."""
     print(f"\n→ {description}")
     print(f"  Running: {' '.join(cmd)}")

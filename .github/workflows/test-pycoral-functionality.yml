@@ -36,9 +36,8 @@ jobs:
 
     - name: Test PyCoral import and version
       run: |
-        python -c "import pycoral; print(f'PyCoral version: {pycoral.__version__}')"
+        python -c "import pycoral; print('PyCoral version: ' + pycoral.__version__)"
         python -c "import pycoral.adapters.common; print('Adapters module imported successfully')"
-        python -c "try: import pycoral.utils.edgetpu; print('EdgeTPU utils imported successfully'); except Exception as e: print('EdgeTPU utils import failed (expected):', e)"
         python -c "import pycoral.utils.dataset; print('Dataset utils imported successfully')"
 
     - name: Test PyCoral basic functionality
@@ -52,15 +51,15 @@ jobs:
         
         # Test basic tensor operations
         test_data = np.array([1, 2, 3, 4, 5], dtype=np.float32)
-        print(f'Test data shape: {test_data.shape}')
-        print(f'Test data dtype: {test_data.dtype}')
+        print('Test data shape: ' + str(test_data.shape))
+        print('Test data dtype: ' + str(test_data.dtype))
         
         # Test common adapter functions exist
         assert hasattr(common, 'input_tensor'), 'input_tensor function not found'
         assert hasattr(common, 'output_tensor'), 'output_tensor function not found'
         
         print('All basic functionality tests passed!')
-        print(f'PyCoral {pycoral.__version__} working correctly on Python {'.'.join(map(str, __import__(\"sys\").version_info[:2]))}')"
+        print('PyCoral ' + pycoral.__version__ + ' working correctly on Python ' + '.'.join(map(str, __import__(\"sys\").version_info[:2])))"
 
     - name: Test package build
       run: |
@@ -76,7 +75,7 @@ jobs:
       run: |
         python -c "
         import pycoral
-        print(f'PyCoral {pycoral.__version__} installed from wheel successfully!')
+        print('PyCoral ' + pycoral.__version__ + ' installed from wheel successfully!')
         "
 
   test-github-install:
@@ -96,8 +95,8 @@ jobs:
         python -c "
         import pycoral
         import sys
-        print(f'PyCoral {pycoral.__version__} installed from GitHub!')
-        print(f'Running on Python {sys.version}')
+        print('PyCoral ' + pycoral.__version__ + ' installed from GitHub!')
+        print('Running on Python ' + sys.version)
         print('GitHub installation test PASSED!')
         "
 
@@ -127,9 +126,9 @@ jobs:
         
         print('PyCoral Functionality Demo')
         print('=' * 50)
-        print(f'Python Version: {sys.version}')
-        print(f'PyCoral Version: {pycoral.__version__}')
-        print(f'NumPy Version: {np.__version__}')
+        print('Python Version: ' + sys.version)
+        print('PyCoral Version: ' + pycoral.__version__)
+        print('NumPy Version: ' + np.__version__)
         print()
         
         print('Testing module imports...')
@@ -143,23 +142,23 @@ jobs:
         for module in modules:
             try:
                 __import__(module)
-                print(f'  SUCCESS {module}')
+                print('  SUCCESS ' + module)
             except Exception as e:
-                print(f'  FAILED {module}: {e}')
+                print('  FAILED ' + module + ': ' + str(e))
         
         # Test EdgeTPU separately since it may fail
         try:
             from pycoral.utils import edgetpu
             print('  SUCCESS pycoral.utils.edgetpu')
         except Exception as e:
-            print(f'  EXPECTED FAIL pycoral.utils.edgetpu: {e}')
+            print('  EXPECTED FAIL pycoral.utils.edgetpu: ' + str(e))
         
         print()
         print('Testing basic operations...')
         
         # Test tensor operations
         test_tensor = np.random.random((1, 224, 224, 3)).astype(np.float32)
-        print(f'  Created test tensor: {test_tensor.shape}')
+        print('  Created test tensor: ' + str(test_tensor.shape))
         
         # Test that key functions exist
         functions_to_test = [
@@ -172,9 +171,9 @@ jobs:
         
         for module, func_name in functions_to_test:
             if hasattr(module, func_name):
-                print(f'  FOUND {module.__name__}.{func_name}')
+                print('  FOUND ' + module.__name__ + '.' + func_name)
             else:
-                print(f'  MISSING {module.__name__}.{func_name}')
+                print('  MISSING ' + module.__name__ + '.' + func_name)
         
         print()
         print('DEMO COMPLETE!')
