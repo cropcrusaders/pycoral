@@ -44,9 +44,17 @@ jobs:
         python -m pip install -e .
         
     - name: ✅ Test PyCoral import and version
+import pycoral.adapters.common\n\
+try:\n\
+    import pycoral.utils.edgetpu\n\
+    print('✅ edgetpu module imported')\n\
+except ModuleNotFoundError as e:\n\
+    print(f'⚠️ edgetpu native module not found: {e}')\n\
+except Exception as e:\n\
+    print(f'⚠️ edgetpu import error: {e}')\n\
+"
       run: |
-        python -c "import pycoral; print('✅ PyCoral version:', pycoral.__version__)"
-        python -c "import sys; print('✅ Python version:', sys.version)"
+        python -c "import pycoral; print('PyCoral version:', pycoral.__version__); import sys; print('Python version:', sys.version); import pycoral.adapters.common; try: import pycoral.utils.edgetpu; print('edgetpu module imported'); except ModuleNotFoundError as e: print('edgetpu native module not found:', e); except Exception as e: print('edgetpu import error:', e)"
         
     - name: 🧪 Test basic functionality
       run: |
